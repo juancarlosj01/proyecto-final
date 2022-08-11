@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Form, InputGroup } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
+import { addCartThunk } from '../slices/cart.slice';
 import { getProductThunk } from '../slices/products.slice';
 
 const ProductDetail = () => {
@@ -38,7 +39,8 @@ const ProductDetail = () => {
         const favorite = {
           product: productDetail.id,
           quantity
-        };
+        }
+        dispatch(addCartThunk(favorite))
         console.log(favorite);
       };
 
