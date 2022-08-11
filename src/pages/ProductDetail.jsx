@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Button, Form, InputGroup } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getProductThunk } from '../slices/products.slice';
@@ -9,6 +10,7 @@ const ProductDetail = () => {
     const allProducts = useSelector (state => state.products);
     const [productDetail, setProductDetail] = useState ({});
     const [suggestedProduct, setSuggestedProduct] = useState ([])
+    const [rate, setRate] = useState("");
 
     const {id} = useParams();
 
@@ -31,9 +33,40 @@ const ProductDetail = () => {
     
 
 
+    const addFavorite = () => {
+        alert("Añadido al carrito");
+        const favorite = {
+          news: productDetail.id,
+          rate
+        };
+        console.log(favorite);
+      };
+
+
     return (
         <div>
             <h1>{productDetail?.title}</h1>
+
+            <div>
+        <h5>Add news to favorites</h5>
+        <InputGroup className="mb-3">
+          <Form.Control
+            placeholder="Rate"
+            aria-label="Recipient's username"
+            aria-describedby="basic-addon2"
+            value={rate}
+            onChange={(e) => setRate(e.target.value)}
+          />
+          <Button
+            onClick={addFavorite}
+            variant="outline-secondary"
+            id="button-addon2"
+          >
+            Add
+          </Button>
+        </InputGroup>
+      </div>
+
             <img src={productDetail?.productImgs} style={{width: "350px"}} />
             <p>{productDetail?.description}</p>
             {

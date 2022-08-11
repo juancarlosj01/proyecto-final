@@ -20,7 +20,9 @@ const Purchases = () => {
             <ul>
                 {
                     cart.map(cart => (
-                        <li key={cart.id}>{cart.title} </li>
+                        <li key={cart.id}>{cart.title} <br />
+                        
+                        </li>
                     ))
                 }
             </ul>
