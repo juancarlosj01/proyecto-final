@@ -17,6 +17,13 @@ const Cart = ({ show, handleClose }) => {
 
     }, [])
 
+    const getTotal = (products)=> {
+      let total = 0
+      products.forEach( item =>{
+        total += item.price * Number(item.productsInCart.quantity)
+      } )
+      return total
+    }
 
   return (
     
@@ -24,16 +31,17 @@ const Cart = ({ show, handleClose }) => {
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Cart</Offcanvas.Title>
         </Offcanvas.Header>
+        <h4>Total: {()=>getTotal( cartSelected )}</h4>
         <Offcanvas.Body>My cart.
-
-        <ul>
-          {cartSelected.map((cart) => (
-            <li onClick={() => navigate(`/shop/${cart.id}`)} key={cart.id}>
-                {cart.title}   
-            </li>
-          ))}
-          </ul>
-
+          
+          <ul>
+            {cartSelected.map((cart) => (
+              <li onClick={() => navigate(`/shop/${cart.id}`)} key={cart.id}>
+                  {cart.title}   
+              </li>
+            ))}
+            </ul>
+          
         </Offcanvas.Body>
       </Offcanvas>
 

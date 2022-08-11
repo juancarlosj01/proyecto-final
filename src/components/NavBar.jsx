@@ -24,6 +24,9 @@ const NavBar = () => {
 
   const token = localStorage.getItem("token");
 
+
+  
+
   return (
     <>
       <Navbar bg="light" expand="lg">

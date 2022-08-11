@@ -11,7 +11,7 @@ const ProductDetail = () => {
     const allProducts = useSelector (state => state.products);
     const [productDetail, setProductDetail] = useState ({});
     const [suggestedProduct, setSuggestedProduct] = useState ([])
-    const [quantity, setQuantity] = useState("");
+    const [quantity, setQuantity] = useState(1);
 
     const {id} = useParams();
 
@@ -36,29 +36,51 @@ const ProductDetail = () => {
 
     const addToCart = () => {
         alert("Añadido al carrito");
+<<<<<<< HEAD
         const favorite = {
           product: productDetail.id,
           quantity
         }
         dispatch(addCartThunk(favorite))
         console.log(favorite);
+=======
+        const body = {
+          id: productDetail.id,
+          quantity: Number(quantity)
+        };
+        dispatch(addCartThunk(body))
+        console.log(body);
+        setQuantity(1)
+>>>>>>> f38276159a2e8a7fbd2fe8ff919c1d096b590799
       };
 
 
     return (
         <div>
             <h1>{productDetail?.title}</h1>
-
             <div>
-        <h5>Add to cart</h5>
-        <InputGroup className="mb-3">
-          <Form.Control
-            placeholder="Quantity"
-            aria-label="Recipient's username"
-            aria-describedby="basic-addon2"
-            value={quantity}
-            onChange={(e) => setQuantity(e.target.value)}
-          />
+        
+
+         <div>
+        <h5>Add to cart </h5>
+        </div>
+            <p>{quantity}</p>
+          <Button
+            onClick={()=>setQuantity( quantity - 1)}
+            variant="outline-secondary"
+            id="button-addon2"
+            disabled={quantity === 1}
+          >
+             -
+          </Button>
+          <Button
+            onClick={()=>setQuantity( quantity + 1)}
+            variant="outline-secondary"
+            id="button-addon2"
+          >
+            +
+          </Button>
+ 
           <Button
             onClick={addToCart}
             variant="outline-secondary"
@@ -66,7 +88,9 @@ const ProductDetail = () => {
           >
             Add
           </Button>
-        </InputGroup>
+
+        <h5>Total: {quantity * productDetail?.price}</h5>
+       
       </div>
 
             <img src={productDetail?.productImgs} style={{width: "350px"}} />
