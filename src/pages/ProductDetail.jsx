@@ -36,14 +36,7 @@ const ProductDetail = () => {
 
     const addToCart = () => {
         alert("Añadido al carrito");
-<<<<<<< HEAD
-        const favorite = {
-          product: productDetail.id,
-          quantity
-        }
-        dispatch(addCartThunk(favorite))
-        console.log(favorite);
-=======
+
         const body = {
           id: productDetail.id,
           quantity: Number(quantity)
@@ -51,7 +44,7 @@ const ProductDetail = () => {
         dispatch(addCartThunk(body))
         console.log(body);
         setQuantity(1)
->>>>>>> f38276159a2e8a7fbd2fe8ff919c1d096b590799
+
       };
 
 
