@@ -10,7 +10,7 @@ const ProductDetail = () => {
     const allProducts = useSelector (state => state.products);
     const [productDetail, setProductDetail] = useState ({});
     const [suggestedProduct, setSuggestedProduct] = useState ([])
-    const [rate, setRate] = useState("");
+    const [quantity, setQuantity] = useState("");
 
     const {id} = useParams();
 
@@ -33,11 +33,11 @@ const ProductDetail = () => {
     
 
 
-    const addFavorite = () => {
+    const addToCart = () => {
         alert("Añadido al carrito");
         const favorite = {
-          news: productDetail.id,
-          rate
+          product: productDetail.id,
+          quantity
         };
         console.log(favorite);
       };
@@ -48,17 +48,17 @@ const ProductDetail = () => {
             <h1>{productDetail?.title}</h1>
 
             <div>
-        <h5>Add news to favorites</h5>
+        <h5>Add to cart</h5>
         <InputGroup className="mb-3">
           <Form.Control
-            placeholder="Rate"
+            placeholder="Quantity"
             aria-label="Recipient's username"
             aria-describedby="basic-addon2"
-            value={rate}
-            onChange={(e) => setRate(e.target.value)}
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
           />
           <Button
-            onClick={addFavorite}
+            onClick={addToCart}
             variant="outline-secondary"
             id="button-addon2"
           >
