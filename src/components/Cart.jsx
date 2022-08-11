@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { Offcanvas } from "react-bootstrap";
+import { Button, Offcanvas } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getCartThunk } from "../slices/cart.slice";
+import { buyCart, getCartThunk } from "../slices/cart.slice";
 
 const Cart = ({ show, handleClose }) => {
 
@@ -32,7 +32,10 @@ const Cart = ({ show, handleClose }) => {
           <Offcanvas.Title>Cart</Offcanvas.Title>
         </Offcanvas.Header>
         <h4>Total: {()=>getTotal( cartSelected )}</h4>
-        <Offcanvas.Body>My cart.
+        <Offcanvas.Body>
+        <Button onClick={() => dispatch(buyCart())}>
+          Buy cart
+        </Button>
           
           <ul>
             {cartSelected.map((cart) => (
