@@ -68,6 +68,8 @@ const Home = () => {
 
         <div className="product-container">
           {products.map((productsItem) => (
+
+            productsItem.id !== 11 && productsItem.id !== 6 ?
             <div className="product-box"
               key={productsItem.id}
               onClick={() => navigate(`/shop/${productsItem.id}`)}>
@@ -78,6 +80,8 @@ const Home = () => {
                 {productsItem.products}
               </div>
             </div>
+            :
+            <div></div>
           ))}
         </div>
 
