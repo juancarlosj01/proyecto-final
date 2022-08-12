@@ -16,7 +16,7 @@ const Login = () => {
         localStorage.setItem("token", res.data.data.token);
       })
       .catch((error) => {
-        if (error.response.status === 401) {
+        if (error.response.status === 401 || error.response.status === 404) {
           alert("Credenciales inválidas");
         }
         console.log(error.response);
@@ -27,32 +27,21 @@ const Login = () => {
     });
   };
 
-
-
-
-
   return (
-    <div>
-      <h1>Login</h1>
-
+    <div className="login-container">
+      <h3>Welcome, Enter your email and password to continue!</h3><hr />
       <Form onSubmit={handleSubmit(submit)}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" {...register ("email")}/>
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
+          <Form.Control type="email" placeholder="Enter email" {...register("email")} />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" {...register ("password")} />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
+          <Form.Control type="password" placeholder="Password" {...register("password")} />
+        </Form.Group><hr />
         <Button variant="primary" type="submit">
-          Submit
+          Login
         </Button>
       </Form>
     </div>

@@ -31,57 +31,57 @@ const Home = () => {
       .then((res) => setCategories(res.data.data.categories));
   }, []);
 
-  //console.log (categories)
-
-  useEffect(() => {}, [searchValue]);
+  useEffect(() => { }, [searchValue]);
 
   return (
-    <div>
-      
-      <h1>Home</h1>
+    <div className="home-container">
+      <div className="category-box">
+        <span>Category</span><hr />
+        <div>
+          <ListGroup>
+            {categories.map((category) => (
+              <ListGroup.Item
+                key={category.id}
+                onClick={() => dispatch(filterCategoryThunk(category.id))}
+              >
+                {category.name}
+              </ListGroup.Item>
+            ))}
+          </ListGroup>
+        </div>
+      </div>
 
-      <Col lg={2}>
-        <ListGroup>
-          {categories.map((category) => (
-            <ListGroup.Item
-              key={category.id}
-              onClick={() => dispatch(filterCategoryThunk(category.id))}
-            >
-              {category.name}
-            </ListGroup.Item>
+
+      <div>
+        <InputGroup className="mb-3">
+          <Form.Control
+            placeholder="Type a name"
+            onChange={(e) => setSearchValue(e.target.value)}
+            value={searchValue}
+          />
+          <Button
+            variant="outline-secondary"
+            onClick={() => dispatch(filterProductThunk(searchValue))}>
+            Search
+          </Button>
+        </InputGroup>
+
+        <div className="product-container">
+          {products.map((productsItem) => (
+            <div className="product-box"
+              key={productsItem.id}
+              onClick={() => navigate(`/shop/${productsItem.id}`)}>
+              <img src={productsItem.productImgs} alt="image" />
+              <div>
+                {productsItem.title} <br />
+                {productsItem.price} <br />
+                {productsItem.products}
+              </div>
+            </div>
           ))}
-        </ListGroup>
-      </Col>
+        </div>
 
-      <InputGroup className="mb-3">
-        <Form.Control
-          placeholder="Type a name"
-          aria-label="Recipient's username"
-          aria-describedby="basic-addon2"
-          onChange={(e) => setSearchValue(e.target.value)}
-          value={searchValue}
-        />
-        <Button
-          variant="outline-secondary"
-          onClick={() => dispatch(filterProductThunk(searchValue))}
-        >
-          Search
-        </Button>
-      </InputGroup>
-
-      <Row xs={1} md={2} xl={2} className="g-4">
-        {products.map((productsItem) => (
-          <Col 
-            key={productsItem.id}
-            onClick={() => navigate(`/shop/${productsItem.id}`)}
-          >
-            {productsItem.title} <br />
-            <img src={productsItem.productImgs} alt="" />
-            {productsItem.price}
-            {productsItem.products}
-          </Col>
-        ))}
-      </Row>
+      </div>
     </div>
   );
 };

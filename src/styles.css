@@ -1,0 +1,57 @@
+.icon-navbar{
+    width: 70px;
+}
+
+.nav{
+    border: solid 1px gray;
+}
+
+.login-container{
+    border: solid 1px #FFFFFF;
+    background: #FFFFFF;
+    width: 380px;
+    padding: 2rem;
+    border-radius: 1rem;
+    margin: 3rem auto 0 auto;
+}
+
+.login-container button{
+    width: 100%;
+}
+
+.home-container{
+    display: flex;
+    margin-top: 3rem;
+}
+
+.category-box{
+    padding-right: 2rem;
+}
+
+.product-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.product-box{
+    border: solid 1px gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 280px;
+    height: 320px;
+    margin: 1rem;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.product-box img{
+    width: 200px;
+    padding: 1rem;
+}
+.offcanvas{
+    padding: 2rem;
+} 
